@@ -32,9 +32,9 @@ public class Airport {
   @Column(length = 45)
   private String city;
 
-  @OneToMany(mappedBy = "destination")
+  @OneToMany(mappedBy = "destinationAirport")
   private Set<Route> arrivals;
 
-  @OneToMany(mappedBy = "origin")
+  @OneToMany(mappedBy = "originAirport")
   private Set<Route> departures;
 }
