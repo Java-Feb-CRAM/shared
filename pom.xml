@@ -12,6 +12,13 @@
     <groupId>com.smoothstack.utopia</groupId>
     <artifactId>shared</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/Java-Feb-CRAM/shared</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
