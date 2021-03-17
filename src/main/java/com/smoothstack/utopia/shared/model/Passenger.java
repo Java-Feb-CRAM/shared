@@ -1,8 +1,19 @@
 package com.smoothstack.utopia.shared.model;
 
 import java.time.LocalDate;
-import javax.persistence.*;
-import lombok.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author Rob Maes
@@ -11,7 +22,6 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -19,11 +29,9 @@ import lombok.*;
 public class Passenger {
 
   @Id
+  @Column(columnDefinition = "int")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
-  @ManyToOne(optional = false)
-  private Booking booking;
 
   private String givenName;
   private String familyName;
@@ -34,6 +42,10 @@ public class Passenger {
 
   @Column(length = 45)
   private String address;
+
+  @ManyToOne
+  @JoinColumn(name = "booking_id", nullable = false)
+  private Booking booking;
 
   public Passenger(
     Booking booking,

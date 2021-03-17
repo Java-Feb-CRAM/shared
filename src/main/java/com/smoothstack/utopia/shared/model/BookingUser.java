@@ -1,14 +1,11 @@
 package com.smoothstack.utopia.shared.model;
 
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +15,7 @@ import lombok.ToString;
 
 /**
  * @author Rob Maes
- * Mar 16 2021
+ * Mar 17 2021
  */
 @Getter
 @Setter
@@ -27,21 +24,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table
-public class Airplane {
+public class BookingUser {
 
   @Id
   @Column(columnDefinition = "int")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Long bookingId;
 
   @ManyToOne
-  @JoinColumn(name = "type_id", nullable = false)
-  private AirplaneType airplaneType;
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
 
-  @OneToMany(mappedBy = "airplane")
-  private Set<Flight> flights;
-
-  public Airplane(AirplaneType airplaneType) {
-    this.airplaneType = airplaneType;
-  }
+  @OneToOne
+  @JoinColumn(name = "booking_id", referencedColumnName = "id")
+  private Booking booking;
 }
