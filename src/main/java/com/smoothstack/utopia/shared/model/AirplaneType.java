@@ -34,7 +34,7 @@ public class AirplaneType {
 
   private Integer maxCapacity;
 
-  @OneToMany(mappedBy = "type")
+  @OneToMany(mappedBy = "airplaneType")
   private Set<Airplane> airplanes;
 
   public AirplaneType(Integer maxCapacity) {
