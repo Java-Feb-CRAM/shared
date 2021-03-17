@@ -35,7 +35,7 @@ public class UserRole {
   @Column(length = 45)
   private String name;
 
-  @OneToMany(mappedBy = "role")
+  @OneToMany(mappedBy = "userRole")
   private Set<User> users;
 
   public UserRole(String name) {
