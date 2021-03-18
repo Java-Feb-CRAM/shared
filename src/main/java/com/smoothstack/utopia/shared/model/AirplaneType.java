@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +35,7 @@ public class AirplaneType {
 
   private Integer maxCapacity;
 
+  @JsonIgnoreProperties({ "airplaneType" })
   @OneToMany(mappedBy = "airplaneType")
   private Set<Airplane> airplanes;
 

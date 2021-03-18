@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,14 +35,17 @@ public class Route {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @JsonIgnoreProperties({ "arrivals", "departures" })
   @ManyToOne
   @JoinColumn(name = "origin_id", nullable = false)
   private Airport originAirport;
 
+  @JsonIgnoreProperties({ "arrivals", "departures" })
   @ManyToOne
   @JoinColumn(name = "destination_id", nullable = false)
   private Airport destinationAirport;
 
+  @JsonIgnoreProperties({ "route" })
   @OneToMany(mappedBy = "route")
   private Set<Flight> flights;
 
