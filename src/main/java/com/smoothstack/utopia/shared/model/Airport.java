@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,9 +33,11 @@ public class Airport {
   @Column(length = 45)
   private String city;
 
+  @JsonIgnoreProperties({ "originAirport", "destinationAirport" })
   @OneToMany(mappedBy = "destinationAirport")
   private Set<Route> arrivals;
 
+  @JsonIgnoreProperties({ "originAirport", "destinationAirport" })
   @OneToMany(mappedBy = "originAirport")
   private Set<Route> departures;
 }
