@@ -3,8 +3,8 @@
  */
 package com.smoothstack.utopia.shared.model;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +47,7 @@ public class VerificationToken {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    private Date expiryDate;
+    private LocalDateTime expiryDate;
 
     public VerificationToken(final String token) {
         super();
@@ -64,11 +64,8 @@ public class VerificationToken {
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
     
-    private Date calculateExpiryDate(final int expiryTimeInMinutes) {
-        final Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(new Date().getTime());
-        cal.add(Calendar.MINUTE, expiryTimeInMinutes);
-        return new Date(cal.getTime().getTime());
+    private LocalDateTime calculateExpiryDate(final int expiryTimeInMinutes) {
+        return LocalDateTime.now().plus(Duration.ofMinutes(expiryTimeInMinutes));
     }
 
     public void updateToken(final String token) {
