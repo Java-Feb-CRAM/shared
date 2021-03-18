@@ -3,6 +3,7 @@
   <component name="ProjectTasksOptions">
     <enabled-global>
       <option value="Prettier Java" />
+      <option value="Prettier XML" />
     </enabled-global>
   </component>
 </project>
