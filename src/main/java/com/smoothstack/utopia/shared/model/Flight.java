@@ -51,7 +51,15 @@ public class Flight {
   private Integer reservedSeats;
   private Float seatPrice;
 
-  @JsonIgnoreProperties({ "flights" })
+  @JsonIgnoreProperties(
+    {
+      "flights",
+      "bookingPayment",
+      "bookingGuest",
+      "bookingAgent",
+      "bookingUser",
+    }
+  )
   @ManyToMany
   @JoinTable(
     name = "flight_bookings",
