@@ -48,15 +48,19 @@ public class Booking {
   @OneToMany(mappedBy = "booking")
   private Set<Passenger> passengers;
 
+  @JsonIgnoreProperties({ "booking" })
   @OneToOne(mappedBy = "booking")
   private BookingPayment bookingPayment;
 
+  @JsonIgnoreProperties({ "booking" })
   @OneToOne(mappedBy = "booking")
   private BookingGuest bookingGuest;
 
+  @JsonIgnoreProperties({ "booking" })
   @OneToOne(mappedBy = "booking")
   private BookingAgent bookingAgent;
 
+  @JsonIgnoreProperties({ "booking" })
   @OneToOne(mappedBy = "booking")
   private BookingUser bookingUser;
 }

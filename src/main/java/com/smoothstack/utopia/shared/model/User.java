@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,13 +35,16 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @JsonIgnoreProperties({ "users" })
   @ManyToOne
   @JoinColumn(name = "role_id", nullable = false)
   private UserRole userRole;
 
+  @JsonIgnoreProperties({ "agent" })
   @OneToMany(mappedBy = "agent")
   private Set<BookingAgent> bookingAgents;
 
+  @JsonIgnoreProperties({ "user" })
   @OneToMany(mappedBy = "user")
   private Set<BookingUser> bookingUsers;
 
