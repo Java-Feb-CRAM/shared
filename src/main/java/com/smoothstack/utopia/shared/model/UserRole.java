@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +36,7 @@ public class UserRole {
   @Column(length = 45)
   private String name;
 
+  @JsonIgnoreProperties({ "userRole" })
   @OneToMany(mappedBy = "userRole")
   private Set<User> users;
 

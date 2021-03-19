@@ -5,6 +5,7 @@ package com.smoothstack.utopia.shared.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,8 @@ public class PasswordResetToken {
   private static final int EXPIRATION = 60 * 24;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(columnDefinition = "int")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String token;

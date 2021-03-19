@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -34,6 +35,7 @@ public class BookingGuest {
   @Column(length = 45)
   private String contactPhone;
 
+  @JsonIgnoreProperties({ "bookingGuest" })
   @OneToOne
   @JoinColumn(name = "booking_id", referencedColumnName = "id")
   private Booking booking;
