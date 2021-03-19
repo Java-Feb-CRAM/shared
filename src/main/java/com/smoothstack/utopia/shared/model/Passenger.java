@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,6 +44,7 @@ public class Passenger {
   @Column(length = 45)
   private String address;
 
+  @JsonIgnoreProperties({ "passengers" })
   @ManyToOne
   @JoinColumn(name = "booking_id", nullable = false)
   private Booking booking;
