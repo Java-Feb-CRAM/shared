@@ -55,6 +55,8 @@ public class User {
   @Column(length = 45)
   private String username;
 
+  private short active;
+  
   private String email;
   
   @JsonIgnore
