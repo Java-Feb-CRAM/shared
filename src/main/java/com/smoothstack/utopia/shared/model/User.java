@@ -55,7 +55,8 @@ public class User {
   @Column(length = 45)
   private String username;
 
-  private short active;
+  @Column(columnDefinition = "TINYINT")
+  private boolean active;
   
   private String email;
   
