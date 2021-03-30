@@ -60,7 +60,7 @@ public class Booking {
   @OneToOne(mappedBy = "booking")
   private BookingAgent bookingAgent;
 
-  @JsonIgnoreProperties({ "booking" })
+  @JsonIgnoreProperties({ "booking", "bookingUsers" })
   @OneToOne(mappedBy = "booking")
   private BookingUser bookingUser;
 }
