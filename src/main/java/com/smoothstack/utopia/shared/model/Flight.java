@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,6 +61,9 @@ public class Flight {
   )
   private Set<Booking> bookings;
 
+  @Transient
+  private Integer availableSeats;
+
   public Flight(
     Route route,
     Instant departureTime,
@@ -84,5 +88,14 @@ public class Flight {
     this.departureTime = departureTime;
     this.reservedSeats = reservedSeats;
     this.seatPrice = seatPrice;
+  }
+
+  public Integer getAvailableSeats() {
+    Integer totalSeats = this.getAirplane().getAirplaneType().getMaxCapacity();
+    Integer passengers = 0;
+    for (Booking booking : this.getBookings()) {
+      passengers += booking.getPassengers().size();
+    }
+    return totalSeats - this.reservedSeats - passengers;
   }
 }
