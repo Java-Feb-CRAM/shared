@@ -35,7 +35,7 @@ public class BookingUser {
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
-  @JsonIgnoreProperties({ "bookingUser" })
+  @JsonIgnoreProperties({ "bookingUsers" })
   @OneToOne
   @JoinColumn(name = "booking_id", referencedColumnName = "id")
   private Booking booking;
