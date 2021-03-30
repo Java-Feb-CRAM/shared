@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="utopia@docker" uuid="5a738083-1fba-4600-b376-ad020e8cfae7">
+    <data-source source="LOCAL" name="utopia@localhost" uuid="5a738083-1fba-4600-b376-ad020e8cfae7">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/utopia</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+      <time-zone>America/Chicago</time-zone>
     </data-source>
   </component>
 </project>
