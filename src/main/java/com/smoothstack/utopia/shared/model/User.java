@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
@@ -54,7 +55,12 @@ public class User {
   @Column(length = 45)
   private String username;
 
+  @Column(columnDefinition = "TINYINT")
+  private boolean active;
+  
   private String email;
+  
+  @JsonIgnore
   private String password;
 
   @Column(length = 45)

@@ -32,7 +32,7 @@ import lombok.ToString;
 @Table
 public class PasswordResetToken {
 
-  private static final int EXPIRATION = 60 * 24;
+  private static final int EXPIRATION = 5;
 
   @Id
   @Column(columnDefinition = "int")
