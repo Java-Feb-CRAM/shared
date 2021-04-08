@@ -93,8 +93,10 @@ public class Flight {
   public Integer getAvailableSeats() {
     Integer totalSeats = this.getAirplane().getAirplaneType().getMaxCapacity();
     Integer passengers = 0;
-    for (Booking booking : this.getBookings()) {
-      passengers += booking.getPassengers().size();
+    if (this.getBookings() != null) {
+      for (Booking booking : this.getBookings()) {
+        passengers += booking.getPassengers().size();
+      }
     }
     return totalSeats - this.reservedSeats - passengers;
   }
