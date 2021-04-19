@@ -76,6 +76,7 @@ public class EmailService {
     }
   }
 
+  //TODO make this async
   private void callLambda(SendEmailDto sendEmailDto)
     throws JsonProcessingException {
     ObjectMapper objectMapper = new ObjectMapper();
