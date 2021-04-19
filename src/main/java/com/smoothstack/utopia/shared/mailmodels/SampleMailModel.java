@@ -13,9 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SampleMailModel {
-
-  // But why mail models?
+public class SampleMailModel extends BaseMailModel {
 
   private String recipientName;
   private String text;
