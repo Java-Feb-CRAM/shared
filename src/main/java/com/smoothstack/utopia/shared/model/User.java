@@ -57,9 +57,9 @@ public class User {
 
   @Column(columnDefinition = "TINYINT")
   private boolean active;
-  
+
   private String email;
-  
+
   @JsonIgnore
   private String password;
 
