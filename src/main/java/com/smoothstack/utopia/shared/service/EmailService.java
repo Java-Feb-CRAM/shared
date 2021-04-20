@@ -5,16 +5,13 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
 import com.amazonaws.services.lambda.model.InvokeRequest;
-import com.amazonaws.services.lambda.model.InvokeResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smoothstack.utopia.shared.dto.SendEmailDto;
 import com.smoothstack.utopia.shared.mailmodels.BaseMailModel;
-import com.smoothstack.utopia.shared.mailmodels.SampleMailModel;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
@@ -35,8 +32,9 @@ public class EmailService {
   }
 
   public enum MailTemplate {
-    SAMPLE("sample.ftl"),
-    BOOKING_CONFIRMATION("booking-confirmation.ftl");
+    ACTION("action.ftl"),
+    ALERT("alert.ftl"),
+    BILLING("billing.ftl");
 
     public final String path;
 
@@ -76,6 +74,7 @@ public class EmailService {
     }
   }
 
+  //TODO make this async
   private void callLambda(SendEmailDto sendEmailDto)
     throws JsonProcessingException {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -83,18 +82,12 @@ public class EmailService {
     InvokeRequest invokeRequest = new InvokeRequest()
       .withFunctionName("utopiaSendEmail2")
       .withPayload(payload);
-    InvokeResult invokeResult = null;
     AWSLambda awsLambda = AWSLambdaClientBuilder
       .standard()
       .withCredentials(new ProfileCredentialsProvider())
       .withRegion(Regions.US_EAST_1)
       .build();
-    invokeResult = awsLambda.invoke(invokeRequest);
-    String ans = new String(
-      invokeResult.getPayload().array(),
-      StandardCharsets.UTF_8
-    );
-    System.out.println(ans);
-    System.out.println(invokeResult.getStatusCode());
+    awsLambda.invoke(invokeRequest);
+    System.out.println("sent");
   }
 }

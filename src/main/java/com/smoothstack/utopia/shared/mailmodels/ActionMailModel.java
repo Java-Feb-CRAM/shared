@@ -7,13 +7,10 @@ import lombok.Setter;
 
 /**
  * @author Rob Maes
- * Apr 19 2021
+ * Apr 20 2021
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookingConfirmationMailModel extends BaseMailModel {
-
-  private String recipientName;
-}
+public class ActionMailModel {}
