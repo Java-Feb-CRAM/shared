@@ -13,4 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlertMailModel extends BaseMailModel {}
+public class AlertMailModel extends BaseMailModel {
+
+  private String name;
+}

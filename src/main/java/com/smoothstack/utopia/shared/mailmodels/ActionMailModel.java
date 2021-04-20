@@ -13,4 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ActionMailModel {}
+public class ActionMailModel {
+
+  private String name;
+}
