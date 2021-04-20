@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Value;
 public abstract class BaseMailModel {
 
   // But why mail models?
-  @Value("${basePath}")
   private String basePath;
+
+  public String getBasePath() {
+    return "http://localhost:4200";
+  }
 }
