@@ -29,6 +29,11 @@ public class BillingMailModel extends BaseMailModel {
   private Map<String, String> items = new HashMap<>();
   private String totalAmount;
   private String year = "" + LocalDate.now().getYear();
-  private String url =
-    getBasePath() + "/bookings?confirmationCode=" + getConfirmationCode();
+  private String url;
+
+  public String getUrl() {
+    return (
+      getBasePath() + "/bookings?confirmationCode=" + getConfirmationCode()
+    );
+  }
 }
