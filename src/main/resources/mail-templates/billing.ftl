@@ -529,7 +529,7 @@
                         valign="top"
                       >
                         <a
-                          href="http://www.mailgun.com"
+                          href="${url}"
                           style="
                             font-family: 'Helvetica Neue', Helvetica, Arial,
                               sans-serif;

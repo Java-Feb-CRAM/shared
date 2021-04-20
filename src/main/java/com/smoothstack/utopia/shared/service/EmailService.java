@@ -32,14 +32,16 @@ public class EmailService {
   }
 
   public enum MailTemplate {
-    ACTION("action.ftl"),
-    ALERT("alert.ftl"),
-    BILLING("billing.ftl");
+    ACTION("action.ftl", "Action"),
+    ALERT("alert.ftl", "Alert"),
+    BILLING("billing.ftl", "Booking Confirmation");
 
     public final String path;
+    public final String subject;
 
-    MailTemplate(String path) {
+    MailTemplate(String path, String subject) {
       this.path = path;
+      this.subject = subject;
     }
   }
 
@@ -65,7 +67,7 @@ public class EmailService {
       String htmlBody = processTemplate(template, templateModel);
       SendEmailDto sendEmailDto = new SendEmailDto(
         recipient,
-        "subject",
+        template.subject,
         htmlBody
       );
       callLambda(sendEmailDto);
@@ -74,7 +76,6 @@ public class EmailService {
     }
   }
 
-  //TODO make this async
   private void callLambda(SendEmailDto sendEmailDto)
     throws JsonProcessingException {
     ObjectMapper objectMapper = new ObjectMapper();
