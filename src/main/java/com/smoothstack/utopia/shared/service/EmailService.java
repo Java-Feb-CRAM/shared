@@ -1,6 +1,5 @@
 package com.smoothstack.utopia.shared.service;
 
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
@@ -85,7 +84,6 @@ public class EmailService {
       .withPayload(payload);
     AWSLambda awsLambda = AWSLambdaClientBuilder
       .standard()
-      .withCredentials(new ProfileCredentialsProvider())
       .withRegion(Regions.US_EAST_1)
       .build();
     awsLambda.invoke(invokeRequest);
