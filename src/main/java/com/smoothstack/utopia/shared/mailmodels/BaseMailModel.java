@@ -2,7 +2,6 @@ package com.smoothstack.utopia.shared.mailmodels;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * @author Rob Maes
@@ -16,6 +15,6 @@ public abstract class BaseMailModel {
   private String basePath;
 
   public String getBasePath() {
-    return "http://localhost:4200";
+    return "http://d29rs8p92481zc.cloudfront.net";
   }
 }
