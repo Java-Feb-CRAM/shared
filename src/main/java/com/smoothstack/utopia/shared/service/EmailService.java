@@ -33,6 +33,7 @@ public class EmailService {
   public enum MailTemplate {
     ACTION("action.ftl", "Action"),
     ALERT("alert.ftl", "Alert"),
+    REGISTRATION("registration.ftl", "Confirm Email Address"),
     BILLING("billing.ftl", "Booking Confirmation");
 
     public final String path;
