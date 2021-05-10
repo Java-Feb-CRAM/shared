@@ -41,6 +41,7 @@ public class AirplaneType {
   @OneToMany(mappedBy = "airplaneType")
   private Set<Airplane> airplanes;
 
+  @JsonIgnoreProperties({ "airplaneTypes" })
   @ManyToOne
   @JoinColumn(name = "layout_id", nullable = false)
   private SeatLayout seatLayout;
