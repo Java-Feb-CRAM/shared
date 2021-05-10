@@ -1,5 +1,6 @@
 package com.smoothstack.utopia.shared.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,6 +43,7 @@ public class SeatGroup {
 
   private char[] columns;
 
+  @JsonIgnoreProperties({ "seatGroup" })
   @OneToMany(mappedBy = "seatGroup")
   private Set<SeatLocation> seatLocations;
 }
