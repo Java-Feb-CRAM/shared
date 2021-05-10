@@ -1,6 +1,5 @@
 package com.smoothstack.utopia.shared.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +18,7 @@ import lombok.ToString;
 
 /**
  * @author Rob Maes
- * Mar 16 2021
+ * May 10 2021
  */
 @Getter
 @Setter
@@ -28,24 +27,21 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table
-public class AirplaneType {
+public class SeatGroup {
 
   @Id
   @Column(columnDefinition = "int")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private Integer maxCapacity;
-
-  @JsonIgnoreProperties({ "airplaneType" })
-  @OneToMany(mappedBy = "airplaneType")
-  private Set<Airplane> airplanes;
-
   @ManyToOne
   @JoinColumn(name = "layout_id", nullable = false)
   private SeatLayout seatLayout;
 
-  public AirplaneType(Integer maxCapacity) {
-    this.maxCapacity = maxCapacity;
-  }
+  private String name;
+
+  private char[] columns;
+
+  @OneToMany(mappedBy = "seatGroup")
+  private Set<SeatLocation> seatLocations;
 }

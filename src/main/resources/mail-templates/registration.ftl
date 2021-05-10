@@ -231,7 +231,7 @@
                         "
                         valign="top"
                       >
-						Hello ${givenName} ${familyName},<br/>
+                        Hello ${givenName} ${familyName},<br />
                         Please confirm your email address by clicking the link
                         below.
                       </td>
@@ -338,8 +338,8 @@
                         "
                         valign="top"
                       >
-                        &mdash; Utopia Airlines <br/>
-						${date}
+                        &mdash; Utopia Airlines <br />
+                        ${date}
                       </td>
                     </tr>
                   </table>
@@ -392,7 +392,7 @@
                     align="center"
                     valign="top"
                   >
-                    &copy; ${year} Craig Saunders & Rob Maes 
+                    &copy; ${year} Craig Saunders & Rob Maes
                   </td>
                 </tr>
               </table>
