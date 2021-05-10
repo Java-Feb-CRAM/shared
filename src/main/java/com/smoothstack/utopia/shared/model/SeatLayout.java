@@ -33,9 +33,11 @@ public class SeatLayout {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @JsonIgnoreProperties({ "seatLayout" })
   @OneToMany(mappedBy = "seatLayout")
   private Set<AirplaneType> airplaneTypes;
 
+  @JsonIgnoreProperties({ "seatLayout" })
   @OneToMany(mappedBy = "seatLayout")
   private Set<SeatGroup> seatGroups;
 }
