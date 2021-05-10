@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -19,7 +17,7 @@ import lombok.ToString;
 
 /**
  * @author Rob Maes
- * Mar 16 2021
+ * May 10 2021
  */
 @Getter
 @Setter
@@ -28,24 +26,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table
-public class AirplaneType {
+public class SeatLayout {
 
   @Id
   @Column(columnDefinition = "int")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private Integer maxCapacity;
+  @OneToMany(mappedBy = "seatLayout")
+  private Set<AirplaneType> airplaneTypes;
 
-  @JsonIgnoreProperties({ "airplaneType" })
-  @OneToMany(mappedBy = "airplaneType")
-  private Set<Airplane> airplanes;
-
-  @ManyToOne
-  @JoinColumn(name = "layout_id", nullable = false)
-  private SeatLayout seatLayout;
-
-  public AirplaneType(Integer maxCapacity) {
-    this.maxCapacity = maxCapacity;
-  }
+  @OneToMany(mappedBy = "seatLayout")
+  private Set<SeatGroup> seatGroups;
 }
