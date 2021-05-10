@@ -36,8 +36,8 @@ public class SeatLocation {
   @JoinColumn(name = "group_id", nullable = false)
   private SeatGroup seatGroup;
 
-  private Integer width;
-  private Integer height;
+  private Double width;
+  private Double height;
   private Character col;
   private Integer row;
 }
