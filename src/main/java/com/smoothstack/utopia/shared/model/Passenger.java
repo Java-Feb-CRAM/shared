@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,6 +49,10 @@ public class Passenger {
   @ManyToOne
   @JoinColumn(name = "booking_id", nullable = false)
   private Booking booking;
+
+  @JsonIgnoreProperties({ "passenger" })
+  @OneToOne(optional = true, mappedBy = "passenger")
+  private Seat seat;
 
   public Passenger(
     Booking booking,
