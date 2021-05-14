@@ -13,7 +13,7 @@
   </parent>
   <groupId>com.smoothstack.utopia</groupId>
   <artifactId>shared</artifactId>
-  <version>3.7-SNAPSHOT</version>
+  <version>3.8-SNAPSHOT</version>
   <distributionManagement>
     <repository>
       <id>github</id>

@@ -77,6 +77,9 @@ public class Flight {
   @Transient
   private Integer availableSeats;
 
+  @Transient
+  private Integer totalSeats;
+
   public Flight(
     Route route,
     Instant departureTime,
@@ -104,13 +107,17 @@ public class Flight {
   }
 
   public Integer getAvailableSeats() {
-    Integer totalSeats = this.getAirplane().getAirplaneType().getMaxCapacity();
-    Integer passengers = 0;
-    if (this.getBookings() != null) {
-      for (Booking booking : this.getBookings()) {
-        passengers += booking.getPassengers().size();
+    int count = 0;
+    Set<Seat> seats = this.getSeats();
+    for (Seat seat : seats) {
+      if (seat.getPassenger() == null) {
+        count += 1;
       }
     }
-    return totalSeats - this.reservedSeats - passengers;
+    return count;
+  }
+
+  public Integer getTotalSeats() {
+    return this.getSeats().size();
   }
 }
