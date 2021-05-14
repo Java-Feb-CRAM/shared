@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,16 @@ public class AirplaneType {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Transient
   private Integer maxCapacity;
+
+  public Integer getMaxCapacity() {
+    return this.getSeatLayout()
+      .getSeatGroups()
+      .stream()
+      .mapToInt(group -> group.getSeatLocations().size())
+      .sum();
+  }
 
   @JsonIgnoreProperties({ "airplaneType" })
   @OneToMany(mappedBy = "airplaneType")
@@ -45,8 +55,4 @@ public class AirplaneType {
   @ManyToOne
   @JoinColumn(name = "layout_id", nullable = false)
   private SeatLayout seatLayout;
-
-  public AirplaneType(Integer maxCapacity) {
-    this.maxCapacity = maxCapacity;
-  }
 }
