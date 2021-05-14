@@ -1,6 +1,7 @@
 package com.smoothstack.utopia.shared.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.Instant;
 import java.util.Set;
 import javax.persistence.Column;
@@ -70,6 +71,7 @@ public class Flight {
   )
   private Set<Booking> bookings;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonIgnoreProperties({ "flight" })
   @OneToMany(mappedBy = "flight")
   private Set<Seat> seats;
@@ -108,16 +110,23 @@ public class Flight {
 
   public Integer getAvailableSeats() {
     int count = 0;
-    Set<Seat> seats = this.getSeats();
-    for (Seat seat : seats) {
-      if (seat.getPassenger() == null) {
-        count += 1;
+    if (this.getSeats() != null) {
+      Set<Seat> seats = this.getSeats();
+      for (Seat seat : seats) {
+        if (seat.getPassenger() == null) {
+          count += 1;
+        }
       }
     }
+
     return count;
   }
 
   public Integer getTotalSeats() {
-    return this.getSeats().size();
+    if (this.getSeats() != null) {
+      return this.getSeats().size();
+    } else {
+      return 0;
+    }
   }
 }
