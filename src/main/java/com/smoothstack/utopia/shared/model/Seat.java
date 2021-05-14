@@ -1,6 +1,7 @@
 package com.smoothstack.utopia.shared.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,7 @@ public class Seat {
   @JoinColumn(name = "flight_id", nullable = false)
   private Flight flight;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @JsonIgnoreProperties({ "seat" })
   @OneToOne(optional = true)
   @JoinColumn(name = "passenger_id", referencedColumnName = "id")
