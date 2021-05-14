@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -68,6 +69,10 @@ public class Flight {
     inverseJoinColumns = @JoinColumn(name = "booking_id")
   )
   private Set<Booking> bookings;
+
+  @JsonIgnoreProperties({ "flight" })
+  @OneToMany(mappedBy = "flight")
+  private Set<Seat> seats;
 
   @Transient
   private Integer availableSeats;
